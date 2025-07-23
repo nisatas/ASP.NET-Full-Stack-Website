@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\BeygirMuhendisi.Web.props" />
+</Project>

@@ -1,0 +1,23 @@
+@model IEnumerable<BeygirMuhendisi.Web.Models.Tahmin>
+
+<div class="tutan-container">
+    <h1 class="tutan-title">Tutan Tahminler</h1>
+    <div class="tutan-list">
+        @foreach (var item in Model.Where(x => x.TutanTahmin))
+        {
+            <div class="tutan-card">
+                <div class="tutan-header">
+                    <span class="tutan-date">@item.Tarih.ToShortDateString()</span>
+                    <span class="tutan-pist">@item.Pist</span>
+                </div>
+                <div class="tutan-body">
+                    <div class="tutan-baslik">@item.Baslik</div>
+                    <div class="tutan-tur">@item.Tur</div>
+                </div>
+                <div class="tutan-actions">
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="tutan-btn">Detay</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

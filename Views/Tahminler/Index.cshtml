@@ -1,0 +1,65 @@
+@model IEnumerable<BeygirMuhendisi.Web.Models.Tahmin>
+
+@{
+    ViewData["Title"] = "Tahminler";
+}
+
+<div class="admin-container">
+    <h1 class="admin-title">Tahminler</h1>
+    <a asp-action="Create" class="btn btn-primary admin-add-btn">+ Yeni Tahmin Ekle</a>
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Tarih</th>
+                    <th>Başlık</th>
+                    <th>Pist</th>
+                    <th>Gün</th>
+                    <th>Tür</th>
+                    <th>Açıklama</th>
+                    <th>SheetsUrl</th>
+                    <th>Aktif</th>
+                    <th>Tutan</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Tarih.ToShortDateString()</td>
+                    <td>@item.Baslik</td>
+                    <td>@item.Pist</td>
+                    <td>@item.Gun</td>
+                    <td>@item.Tur</td>
+                    <td>@item.Aciklama</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.SheetsUrl))
+                        {
+                            <div class="sheets-embed">
+                                <iframe src="@item.SheetsUrl" width="250" height="120" frameborder="0"></iframe>
+                            </div>
+                            <a href="@item.SheetsUrl" target="_blank" style="font-size:11px;">Google Sheets'te Aç</a>
+                        }
+                    </td>
+                    <td>
+                        <span class="badge @(item.Aktif ? "badge-success" : "badge-danger")">
+                            @(item.Aktif ? "✔" : "✖")
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge @(item.TutanTahmin ? "badge-success" : "badge-danger")">
+                            @(item.TutanTahmin ? "✔" : "✖")
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-edit">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-delete">Sil</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-details">Detay</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

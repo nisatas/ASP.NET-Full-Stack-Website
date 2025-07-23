@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+@using BeygirMuhendisi.Web.Models
+@{
+    var sonTahminler = ViewBag.SonTahminler as List<Tahmin>;
+    var tutanTahminler = ViewBag.TutanTahminler as List<Tahmin>;
+}
+
+<main>
+    <div class="container">
+        <section class="hero">
+            <h1>At Yarışı Tahminleri</h1>
+            <p>Güncel ve güvenilir at yarışı tahminleri burada!</p>
+        </section>
+        <div class="content-wrapper">
+            <section class="content">
+                <h2>Son Tahminler</h2>
+                <div class="tahminler-listesi">
+                    @if (sonTahminler != null && sonTahminler.Any())
+                    {
+                        foreach (var item in sonTahminler)
+                        {
+                            <div class="tahmin-card">
+                                <img src="~/assets/atyarisitahminleri.jpg" alt="Tahmin" class="tahmin-img" />
+                                <div class="tahmin-info">
+                                    <h3>@item.Tarih.ToShortDateString() - @item.Pist</h3>
+                                    <p>@item.Baslik</p>
+                                    <a href="@Url.Action("Details", "Tahminler", new { id = item.Id })" class="tahmin-link">
+                                        Detay &raquo;
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>Henüz tahmin eklenmedi.</p>
+                    }
+                </div>
+            </section>
+            @if (tutanTahminler != null && tutanTahminler.Any())
+            {
+                <aside class="tutan-tahminler">
+                    <h3>TUTAN TAHMİNLER</h3>
+                    <ul class="tutan-list">
+                        @foreach (var item in tutanTahminler)
+                        {
+                            <li>
+                                <a href="@Url.Action("Details", "Tahminler", new { id = item.Id })">
+                                    @item.Tarih.ToShortDateString() - @item.Pist
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </aside>
+            }
+        </div>
+    </div>
+</main>

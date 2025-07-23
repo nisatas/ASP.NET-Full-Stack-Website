@@ -1,0 +1,60 @@
+@model BeygirMuhendisi.Web.Models.Tahmin
+
+@{
+    ViewData["Title"] = "Yeni Tahmin Ekle";
+}
+
+<div class="admin-container">
+    <h1>Yeni Tahmin Ekle</h1>
+    <form asp-action="Create" class="admin-form">
+        <div class="form-group">
+            <label asp-for="Tarih"></label>
+            <input asp-for="Tarih" class="form-control" type="date" />
+            <span asp-validation-for="Tarih" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Baslik"></label>
+            <input asp-for="Baslik" class="form-control" />
+            <span asp-validation-for="Baslik" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pist"></label>
+            <input asp-for="Pist" class="form-control" />
+            <span asp-validation-for="Pist" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gun"></label>
+            <input asp-for="Gun" class="form-control" />
+            <span asp-validation-for="Gun" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tur"></label>
+            <input asp-for="Tur" class="form-control" />
+            <span asp-validation-for="Tur" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Aciklama"></label>
+            <textarea asp-for="Aciklama" class="form-control"></textarea>
+            <span asp-validation-for="Aciklama" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SheetsUrl"></label>
+            <input asp-for="SheetsUrl" class="form-control" />
+            <span asp-validation-for="SheetsUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group checkbox-group">
+            <label>
+                <input asp-for="Aktif" type="checkbox" /> Aktif
+            </label>
+            <label>
+                <input asp-for="TutanTahmin" type="checkbox" /> Tutan Tahmin
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary admin-add-btn">Kaydet</button>
+        <a asp-action="Index" class="btn btn-details">Geri Dön</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

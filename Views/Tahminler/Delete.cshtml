@@ -1,0 +1,16 @@
+@model BeygirMuhendisi.Web.Models.Tahmin
+
+@{
+    ViewData["Title"] = "Tahmin Düzenle";
+}
+
+<div class="admin-container">
+    <h1 class="admin-title">Tahmin Düzenle</h1>
+    <form asp-action="Edit" class="admin-form">
+        <input type="hidden" asp-for="Id" />
+        <!-- Diğer alanlar için Create.cshtml'deki gibi form-group'lar -->
+        <!-- ... -->
+        <button type="submit" class="btn btn-primary admin-add-btn">Kaydet</button>
+        <a asp-action="Index" class="btn btn-details">Listeye Dön</a>
+    </form>
+</div>

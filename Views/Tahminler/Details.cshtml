@@ -1,0 +1,51 @@
+@model BeygirMuhendisi.Web.Models.Tahmin
+
+@{
+    ViewData["Title"] = "Tahmin Detayı";
+}
+
+<div class="admin-container">
+    <h1 class="admin-title">Tahmin Detayı</h1>
+    <div class="details-card">
+        <dl>
+            <dt>Tarih</dt>
+            <dd>@Model.Tarih.ToShortDateString()</dd>
+            <dt>Başlık</dt>
+            <dd>@Model.Baslik</dd>
+            <dt>Pist</dt>
+            <dd>@Model.Pist</dd>
+            <dt>Gün</dt>
+            <dd>@Model.Gun</dd>
+            <dt>Tür</dt>
+            <dd>@Model.Tur</dd>
+            <dt>Açıklama</dt>
+            <dd>@Model.Aciklama</dd>
+            <dt>SheetsUrl</dt>
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.SheetsUrl))
+                {
+                    <div class="sheets-embed" style="margin-bottom:8px;">
+                        <iframe src="@Model.SheetsUrl" width="100%" height="400" frameborder="0"></iframe>
+                    </div>
+                    <a href="@Model.SheetsUrl" target="_blank" style="font-size:12px;">Google Sheets'te Aç</a>
+                }
+            </dd>
+            <dt>Aktif</dt>
+            <dd>
+                <span class="badge @(Model.Aktif ? "badge-success" : "badge-danger")">
+                    @(Model.Aktif ? "✔" : "✖")
+                </span>
+            </dd>
+            <dt>Tutan Tahmin</dt>
+            <dd>
+                <span class="badge @(Model.TutanTahmin ? "badge-success" : "badge-danger")">
+                    @(Model.TutanTahmin ? "✔" : "✖")
+                </span>
+            </dd>
+        </dl>
+        <div class="details-actions">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-edit">Düzenle</a>
+            <a asp-action="Index" class="btn btn-details">Listeye Dön</a>
+        </div>
+    </div>
+</div>
